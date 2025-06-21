@@ -5,23 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>延吉市创想饲料有限公司</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Microsoft Yahei", sans-serif;
-      background-color: #fff;
+      background: #f2f2f2;
       color: #1d1d1f;
       line-height: 1.6;
     }
     header {
-      background: linear-gradient(to bottom, #000 0%, #222 100%);
-      color: #fff;
+      background-image: url("LOGO.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
       text-align: center;
-      padding: 80px 16px 60px;
+      padding: 200px 16px 100px;
+      position: relative;
+      color: #fff;
     }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 0;
+    }
+    header h1, header p { position: relative; z-index: 1; }
     header h1 {
       font-size: 8vw;
       font-weight: 600;
@@ -29,7 +37,7 @@
     }
     header p {
       font-size: 5vw;
-      color: #ccc;
+      color: #eee;
     }
     nav {
       background-color: #f8f8f8;
@@ -46,26 +54,105 @@
       font-size: 16px;
       font-weight: 500;
     }
-    nav a:hover {
-      color: #06c;
-    }
+    nav a:hover { color: #06c; }
     section {
-      padding: 60px 16px;
-      max-width: 880px;
+      padding: 60px 10%;
+      max-width: 1280px;
       margin: auto;
+      text-align: center;
     }
     section h2 {
       font-size: 28px;
       font-weight: 600;
       margin-bottom: 20px;
       color: #1d1d1f;
+      text-align: center;
     }
-    section p, section ul {
+    .slider-container {
+      width: 80%;
+      margin: 0 auto;
+      padding: 20px 0;
+      background: #ffffff;
+      text-align: center;
+      position: relative;
+    }
+    .slider-wrapper {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 0 40px;
+      justify-content: center;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .slider-wrapper::-webkit-scrollbar {
+      height: 8px;
+    }
+    .slider-wrapper::-webkit-scrollbar-thumb {
+      background-color: red;
+      border-radius: 4px;
+    }
+    .slider-wrapper::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+    .product-item {
+      flex: 0 0 auto;
+      text-align: center;
+    }
+    .product-item img {
+      height: 320px;
+      width: auto;
+      object-fit: contain;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .product-item p {
+      font-size: 14px;
+      margin-top: 8px;
+      color: #333;
+    }
+    .product-buttons {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .product-buttons button {
+      padding: 10px 20px;
+      margin: 0 10px;
       font-size: 16px;
-      color: #555;
+      font-weight: 500;
+      border: 1px solid red;
+      border-radius: 5px;
+      background-color: #fff;
+      color: red;
+      cursor: pointer;
     }
-    ul li {
-      margin-bottom: 12px;
+    .product-buttons button:hover {
+      background-color: red;
+      color: #fff;
+    }
+    .product-buttons button.active {
+      background-color: red;
+      color: white;
+      border-color: red;
+    }
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: red;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 1;
+    }
+    .slider-arrow.left {
+      left: 0;
+    }
+    .slider-arrow.right {
+      right: 0;
     }
     footer {
       background-color: #f2f2f2;
@@ -73,14 +160,6 @@
       color: #888;
       padding: 30px 16px;
       font-size: 14px;
-    }
-    @media (min-width: 768px) {
-      header h1 {
-        font-size: 56px;
-      }
-      header p {
-        font-size: 24px;
-      }
     }
   </style>
 </head>
@@ -99,32 +178,35 @@
 
   <section id="about">
     <h2>关于我们</h2>
-    <p>
-      延吉市创想饲料有限公司专注于高品质饲料的研发与生产，服务于猪、牛、禽类等畜牧业领域。
-      我们秉持“创造价值，享受生活”的经营理念，致力于为客户带来优质产品和高效服务。
+    <p style="text-align:center;">
+      延吉市创想饲料有限公司专注于高品质饲料的研发与生产领域。<br>我们秉持“创造价值，享受生活”的经营理念，致力于为客户带来优质产品和高效服务。
     </p>
   </section>
 
   <section id="products">
     <h2>产品展示</h2>
-    <ul>
-      <li>猪用饲料：提升日增重，促进健康成长</li>
-      <li>牛用饲料：增强反刍效率，提高奶产量</li>
-      <li>禽类饲料：优化蛋白结构，提高免疫力</li>
-    </ul>
+    <div class="slider-container">
+      <button class="slider-arrow left" onclick="scrollSlider(-1)">&#10094;</button>
+      <div class="slider-wrapper" id="sliderTrack"></div>
+      <button class="slider-arrow right" onclick="scrollSlider(1)">&#10095;</button>
+    </div>
+    <div class="product-buttons">
+      <button class="active" onclick="toggleCategory(this, '配合饲料')">配合饲料</button>
+      <button onclick="toggleCategory(this, '浓缩饲料')">浓缩饲料</button>
+    </div>
   </section>
 
   <section id="tech">
     <h2>技术研发</h2>
-    <p>
+    <p style="text-align:center;">
       公司配备先进的实验室和检测设备，持续优化饲料配方，提升产品的营养价值与适口性，确保每一批次饲料的质量与稳定性。
     </p>
   </section>
 
   <section id="contact">
     <h2>联系我们</h2>
-    <p>
-      地址：<a href="https://www.amap.com/search?query=%E5%BB%B6%E5%90%89%E5%B8%82%E9%A3%9E%E8%A1%8C%E8%B7%AF888%E5%8F%B7" target="_blank">延吉市飞行路888号</a><br>
+    <p style="text-align:center;">
+      地址：<a href="https://www.amap.com/search?query=延吉市飞行路888号" target="_blank">延吉市飞行路888号</a><br>
       电话：<a href="tel:0433-2316099">0433-2316099</a>
     </p>
   </section>
@@ -132,5 +214,64 @@
   <footer>
     <p>© 2025 延吉市创想饲料有限公司. 版权所有.</p>
   </footer>
+
+  <script>
+    const products = {
+      '配合饲料': [
+        { src: '2000-哺乳仔猪配合饲料.jpg', name: '2000 哺乳仔猪配合饲料' },
+        { src: '2010-断奶仔猪配合饲料.jpg', name: '2010 断奶仔猪配合饲料' },
+        { src: '2030-仔猪配合饲料.jpg', name: '2030 仔猪配合饲料' },
+        { src: '2130-育成猪配合饲料.jpg', name: '2130 育成猪配合饲料' },
+        { src: '2150-育肥猪配合饲料老.jpg', name: '2150 育肥猪配合饲料' },
+        { src: '2350-哺乳母猪配合饲料.jpg', name: '2350 哺乳母猪配合饲料' },
+        { src: '2360-妊娠母猪配合饲料.jpg', name: '2360 妊娠母猪配合饲料' },
+      ],
+      '浓缩饲料': [
+        { src: '2038-仔猪浓缩饲料.jpg', name: '2038 仔猪浓缩饲料' },
+        { src: '2138-育成猪浓缩饲料.jpg', name: '2138 育成猪浓缩饲料' },
+        { src: '2358-哺乳母猪浓缩饲料.jpg', name: '2358 哺乳母猪浓缩饲料' },
+        { src: '2368-妊娠母猪浓缩饲料.jpg', name: '2368 妊娠母猪浓缩饲料' },
+      ]
+    };
+
+    function toggleCategory(button, category) {
+      document.querySelectorAll('.product-buttons button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const track = document.getElementById('sliderTrack');
+      track.style.opacity = '0';
+      setTimeout(() => {
+        track.innerHTML = '';
+        products[category].forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'product-item';
+          div.innerHTML = `<img src="${item.src}" /><p>${item.name}</p>`;
+          track.appendChild(div);
+        });
+
+        const wrapper = document.querySelector('.slider-wrapper');
+        const totalWidth = Array.from(wrapper.children).reduce((sum, el) => sum + el.offsetWidth + 20, 0);
+        if (totalWidth < wrapper.offsetWidth) {
+          wrapper.style.justifyContent = 'center';
+        } else {
+          wrapper.style.justifyContent = 'flex-start';
+        }
+
+        track.scrollTo({ left: 0 });
+        track.style.opacity = '1';
+      }, 150);
+    }
+
+    function scrollSlider(direction) {
+      const wrapper = document.querySelector('.slider-wrapper');
+      const scrollAmount = 300;
+      wrapper.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    window.onload = function () {
+      const firstBtn = document.querySelector('.product-buttons button.active');
+      toggleCategory(firstBtn, '配合饲料');
+    }
+  </script>
 </body>
 </html>
